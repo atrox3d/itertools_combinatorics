@@ -7,13 +7,19 @@ expected = [
     (2, 'a'), (2, 'b'), (2, 'c'),
 ]
 
+def print_data(*data):
+    for d in data:
+        print(d)
+
 def example_product(data1, data2, expected):
     # it.product(*iterables, repeat=1)
     # repeat=n means:
     # it.product(*iterables, *iterables, ... [n times])
     #         1a, 1b, 1c, 2a, 2b, 2c
+    print_data(data1, data2)
     result = list(it.product(data1, data2))
     [print(combo) for combo in result]
+    print()
     assert result == expected
     return result
 
@@ -35,3 +41,23 @@ for_product = forloop_product(data1, data2)
 comp_product = comprehension_product(data1, data2)
 
 assert product == for_product == comp_product == expected
+
+def test_product_repeat(data1, data2, repeat=1):
+    result = list(it.product(data1, data2, repeat=repeat))
+    print_data(data1, data2, data1, data2)
+    [print(combo) for combo in result]
+    print()
+    # assert result == expected
+    return result
+
+def test_product_repeat_iterables(data1, data2):
+    result = list(it.product(data1, data2, data1, data2))
+    print_data(data1, data2, data1, data2)
+    [print(combo) for combo in result]
+    print()
+    # assert result == expected
+    return result
+
+tpr = test_product_repeat(data1, data2, 2)
+tpri = test_product_repeat_iterables(data1, data2)
+assert tpr == tpri
