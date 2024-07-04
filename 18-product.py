@@ -42,12 +42,24 @@ comp_product = comprehension_product(data1, data2)
 
 assert product == for_product == comp_product == expected
 
+############################################################################
+# compare repeat=2 with multiple copies of iterables
+############################################################################
+'''
+                  1, 2
+                  |
+                  a, b, c
+                /   \ 
+             1,        2
+          /  |  \   /  |  \ 
+         a,  b, c  a,  b,  c
+
+'''
 def test_product_repeat(data1, data2, repeat=1):
     result = list(it.product(data1, data2, repeat=repeat))
     print_data(data1, data2, data1, data2)
     [print(combo) for combo in result]
     print()
-    # assert result == expected
     return result
 
 def test_product_repeat_iterables(data1, data2):
@@ -55,7 +67,6 @@ def test_product_repeat_iterables(data1, data2):
     print_data(data1, data2, data1, data2)
     [print(combo) for combo in result]
     print()
-    # assert result == expected
     return result
 
 tpr = test_product_repeat(data1, data2, 2)
