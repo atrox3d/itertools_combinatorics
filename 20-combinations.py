@@ -36,5 +36,5 @@ expected = [
 example_combinations(data, r=2, expected=expected)
 
 
-for r in range(len(data)+2):
+for r in range(10):
     example_combinations(data, r)
